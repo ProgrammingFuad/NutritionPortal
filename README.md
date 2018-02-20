@@ -1,6 +1,6 @@
 # NutritionPortal
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.10.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.10 (Older versions do not currently work well with Angular 5, newer versions have various bugs and glitches that are un-resolved, 1.4.10 has proven to be the most stable CLI version.
 
 ## Development server
 
@@ -24,4 +24,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md) or contact the creator of this project Fuad Mohamoud.
