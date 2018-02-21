@@ -12,7 +12,7 @@ export class PatientService {
   //This is a temporary thing because our patient data
   //has not been fully updated into the system yet
   getData(){
-    this.patientList = this.firebase.list('users');
+    this.patientList = this.firebase.list('Patient');
     return this.patientList;
   }
   

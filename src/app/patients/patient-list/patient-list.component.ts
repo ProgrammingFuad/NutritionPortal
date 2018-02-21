@@ -14,12 +14,12 @@ export class PatientListComponent implements OnInit {
 
   //loads our patient list from our Service into an array
   ngOnInit() {
-    var x = this.patientService.getData();
-    x.snapshotChanges().subscribe(item => {
+    var patients = this.patientService.getData();
+    patients.snapshotChanges().subscribe(item => {
       this.patientList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
-        y["$key"] = element.key;
+        y["$key"] = element.key; 
         this.patientList.push(y as Patient);
         console.log(y);
       });

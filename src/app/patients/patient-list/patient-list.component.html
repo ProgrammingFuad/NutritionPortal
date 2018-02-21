@@ -1,6 +1,7 @@
 <table class="table table-sm table-hover">
   <tr *ngFor="let patient of patientList">
-      <td>{{patient.email}}</td>
-      <td>{{patient.name}}</td>
+      <td>{{ patient.profilePicLink }}</td>
+      <td>{{ patient.name }}</td>
+      <td>{{ patient.email }}</td>
   </tr>
 </table>
