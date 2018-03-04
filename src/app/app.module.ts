@@ -1,36 +1,50 @@
+import { PatientService } from './patients/shared/patient.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule, OnInit } from '@angular/core';
 import { AppComponent } from './app.component';
 //imports needed for firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
-import { PatientsComponent } from './patients/patients.component';
-import { PatientComponent } from './patients/patient/patient.component';
 import { PatientListComponent } from './patients/patient-list/patient-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule} from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { NewHomeComponent } from './new-home/new-home.component';
+import { LoginComponent } from './login/login.component';
+import { MessagingComponent } from './messaging/messaging.component';
+import { ViewAllPatientsComponent } from './view-all-patients/view-all-patients.component';
+import { appRoutes } from '../routes';
+import { HttpClientModule } from '@angular/common/http';
+ import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PatientsComponent,
-    PatientComponent,
-    PatientListComponent
+    PatientListComponent,
+    NewHomeComponent,
+    LoginComponent,
+    MessagingComponent,
+    ViewAllPatientsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(appRoutes),
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpModule,HttpClientModule,PatientService ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule{
+   ngOnInit() {
+   
+  }
+
+ }

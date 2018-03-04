@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
 import { Patient } from './patient.model';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
 @Injectable()
 export class PatientService {
   //making this patient list available to other classes
