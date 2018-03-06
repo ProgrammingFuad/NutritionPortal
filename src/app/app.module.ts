@@ -2,7 +2,6 @@ import { PatientService } from './patients/shared/patient.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
 import { AppComponent } from './app.component';
-//imports needed for firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
@@ -17,7 +16,9 @@ import { MessagingComponent } from './messaging/messaging.component';
 import { ViewAllPatientsComponent } from './view-all-patients/view-all-patients.component';
 import { appRoutes } from '../routes';
 import { HttpClientModule } from '@angular/common/http';
- import { HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
+import { MessageComponent } from './messaging/message/message.component';
+import { FormSubmitComponent } from './form-submit/form-submit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     NewHomeComponent,
     LoginComponent,
     MessagingComponent,
-    ViewAllPatientsComponent
+    ViewAllPatientsComponent,
+    MessageComponent,
+    FormSubmitComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpModule,
     HttpClientModule
   ],
-  providers: [HttpModule,HttpClientModule,PatientService ],
+  providers: [HttpModule,HttpClientModule,PatientService],
   bootstrap: [AppComponent]
 })
 export class AppModule{

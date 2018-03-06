@@ -1,9 +1,10 @@
 
 
-<table class="table table-sm table-hover">
+<table class="table table-sm table-hover" style="width:100%">
   <tr *ngFor="let patient of patientList">
-      <td>{{ patient.profilePicLink }}</td>
+      <td>{{ patient.profilePicLink }}</td> 
       <td>{{ patient.name }}</td>
       <td>{{ patient.email }}</td>
+      <td>Contact</td>
   </tr>
 </table>

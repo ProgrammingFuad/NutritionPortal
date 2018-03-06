@@ -24,7 +24,6 @@ export class PatientListComponent implements OnInit {
         var y = element.payload.toJSON();
         y["$key"] = element.key; 
         this.patientList.push(y as Patient);
-       // console.log(y);
       });
     });
   }
