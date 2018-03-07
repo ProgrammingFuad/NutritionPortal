@@ -11,7 +11,7 @@ import { ViewAllPatientsComponent} from './app/view-all-patients/view-all-patien
 export const appRoutes: Routes = [
     { path: 'login',   component: LoginComponent},
     { path: 'home',   component: NewHomeComponent},
-    { path: 'patientlist',  component: PatientDataComponent},
-   // { path: 'patientdata', component: PatientDataComponent},
+    { path: 'patientlist',  component: PatientListComponent},
+    { path: 'patientdata', component: PatientDataComponent},
     { path: 'messaging',   component: MessagingComponent} 
   ];
