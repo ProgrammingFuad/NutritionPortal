@@ -1,3 +1,5 @@
+import { PatientDataServceService } from './patient-data/patient-data-servce.service';
+import { PatientDataComponent } from './patient-data/patient-data.component';
 import { PatientService } from './patients/shared/patient.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
@@ -20,6 +22,7 @@ import { HttpModule } from '@angular/http';
 import { MessageComponent } from './messaging/message/message.component';
 import { FormSubmitComponent } from './form-submit/form-submit.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,8 @@ import { FormSubmitComponent } from './form-submit/form-submit.component';
     MessagingComponent,
     ViewAllPatientsComponent,
     MessageComponent,
-    FormSubmitComponent
+    FormSubmitComponent,
+    PatientDataComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import { FormSubmitComponent } from './form-submit/form-submit.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [HttpModule,HttpClientModule,PatientService],
+  providers: [HttpModule,HttpClientModule,PatientService, PatientDataServceService],
   bootstrap: [AppComponent]
 })
 export class AppModule{

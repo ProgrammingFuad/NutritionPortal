@@ -1,3 +1,5 @@
+import { PatientData } from './patient-data.model';
+import { PatientDataServceService } from './patient-data-servce.service';
 import { Component, ViewChild,ElementRef,OnInit} from '@angular/core';
 
 @Component({
@@ -9,28 +11,46 @@ export class PatientDataComponent implements OnInit {
 
   @ViewChild('chart') el: ElementRef;
 
-  constructor() { }
+  patientList: PatientData[];
+   x1= [];
+   y1=[];
+  constructor(private patientDataServceService: PatientDataServceService) { }
 
   ngOnInit() {
-    this.basicChart();
+    var patients = this.patientDataServceService.getData();
+    patients.snapshotChanges().subscribe(item => {
+      this.patientList = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        y["$key"] = element.key;
+        y["weight"]= y["kilogram"];
+        y["timestamp"]= y["timestamp"];
+        this.x1.push(y["timestamp"]);
+        this.y1.push(y["kilogram"])
+        console.log(y);
+        this.patientList.push(y as PatientData);
+      });
+    });
+
+    this.basicChart(this.x1,this.y1);
   }
 
-  basicChart(){
+  basicChart(x: string[], y: number[]){
 
     const element= this.el.nativeElement;
 
     const data=[{
-      x: [1,2,3,4,5],
-      y: [1,2,4,8,16]
+      x ,
+      y
     }]
 
     const layout ={
-      title: 'title of graph',
+      title: 'Weight Tracker',
       xaxis: {
-        title: 'x-axis test1'
+        title: 'Date'
       },
       yaxis: {
-        title: 'y-axis test1'
+        title: 'Weight in Kilos'
       }
     };
 

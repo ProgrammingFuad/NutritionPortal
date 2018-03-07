@@ -1,10 +1,19 @@
-
-
-<table class="table table-sm table-hover" style="width:100%">
-  <tr *ngFor="let patient of patientList">
-      <td>{{ patient.profilePicLink }}</td> 
-      <td>{{ patient.name }}</td>
-      <td>{{ patient.email }}</td>
-      <td>Contact</td>
-  </tr>
-</table>
+<!--
+  <div>
+  <h2>Registered Patients</h2>
+<mat-list *ngFor="let patient of patientList">
+    <mat-list-item ng-click="/patient-data">
+      <p>{{ patient.name }}    {{ patient.email }}   {{  patient.$key }}</p>
+      </mat-list-item>
+   </mat-list>
+   </div>
+ -->
+  <div layout="row" layout-align="center">
+      <mat-list class="md-whiteframe-2dp" flex="66" *ngFor="let patient of patientList">
+        <mat-list-item ng-href="facebook.com">
+          <p>{{ patient.name }}  {{ patient.email }}   {{  patient.$key }}</p>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+ 

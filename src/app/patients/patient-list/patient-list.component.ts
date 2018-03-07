@@ -22,10 +22,17 @@ export class PatientListComponent implements OnInit {
       this.patientList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
-        y["$key"] = element.key; 
-        this.patientList.push(y as Patient);
+        y["$key"] = element.key;
+        if(y["credentials"]!= undefined){
+          y["email"]= y["credentials"].email;
+          y["name"]= y["credentials"].name;
+          y["profilePicLink"]= y["credentials"].profilePicLink;
+          this.patientList.push(y as Patient);
+        }
       });
     });
+
+  
   }
 
 }
