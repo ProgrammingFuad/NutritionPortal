@@ -7,13 +7,12 @@
       </mat-list-item>
    </mat-list>
    </div>
+    {{ patient.email }}   {{  patient.$key }}
  -->
   <div layout="row" layout-align="center">
       <mat-list class="md-whiteframe-2dp" flex="66" *ngFor="let patient of patientList">
-        <mat-list-item ng-href="facebook.com">
-          <p>{{ patient.name }}  {{ patient.email }}   {{  patient.$key }}</p>
+          <p>{{ patient.name }}</p>
           <mat-divider></mat-divider>
-        </mat-list-item>
       </mat-list>
     </div>
  

@@ -15,13 +15,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewHomeComponent } from './new-home/new-home.component';
 import { LoginComponent } from './login/login.component';
 import { MessagingComponent } from './messaging/messaging.component';
-import { ViewAllPatientsComponent } from './view-all-patients/view-all-patients.component';
 import { appRoutes } from '../routes';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { MessageComponent } from './messaging/message/message.component';
 import { FormSubmitComponent } from './form-submit/form-submit.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +30,10 @@ import { FormSubmitComponent } from './form-submit/form-submit.component';
     NewHomeComponent,
     LoginComponent,
     MessagingComponent,
-    ViewAllPatientsComponent,
     MessageComponent,
     FormSubmitComponent,
-    PatientDataComponent
+    PatientDataComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +44,10 @@ import { FormSubmitComponent } from './form-submit/form-submit.component';
     MaterialModule,
     RouterModule.forRoot(appRoutes),
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule
   ],
-  providers: [HttpModule,HttpClientModule,PatientService, PatientDataServceService],
+  providers: [HttpModule,HttpClientModule,PatientService, PatientDataServceService,PatientListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule{

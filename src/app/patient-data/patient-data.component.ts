@@ -47,7 +47,7 @@ export class PatientDataComponent implements OnInit {
     const layout ={
       title: 'Weight Tracker',
       xaxis: {
-        title: 'Date'
+        title: 'Week 3'
       },
       yaxis: {
         title: 'Weight in Kilos'

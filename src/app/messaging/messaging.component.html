@@ -1,11 +1,26 @@
-<div class="wrap">
-    <div class="fleft">
-        <app-message></app-message>
 
-    </div>
-  <div class="fright">
+         <!-- <app-message></app-message>-->
+
     <!--<app-view-all-patients></app-view-all-patients> -->
 
+    <form>
+      <mat-form-field>
+        <mat-select placeholder="Patient" [(ngModel)]="selectedValue" name="Patient">
+          <mat-option *ngFor="let Patient of pList" [value]="Patient.name" id="SecondChance">
+            {{Patient.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <p id="name" class="hide"> Selected value: {{selectedValue}} </p>
+    </form>
+ 
+
+  <div class="col-lg-4">
+    <textarea rows="4" cols="50" placeholder="Enter your text...." id="patientMessage">
+    
+    </textarea>
   </div>
-</div>
+ 
+  <button mat-button (click)="onClickMe()">Send Message</button>
 

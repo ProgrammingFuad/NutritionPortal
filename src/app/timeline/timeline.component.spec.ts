@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewAllPatientsComponent } from './view-all-patients.component';
+import { TimelineComponent } from './timeline.component';
 
-describe('ViewAllPatientsComponent', () => {
-  let component: ViewAllPatientsComponent;
-  let fixture: ComponentFixture<ViewAllPatientsComponent>;
+describe('TimelineComponent', () => {
+  let component: TimelineComponent;
+  let fixture: ComponentFixture<TimelineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewAllPatientsComponent ]
+      declarations: [ TimelineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewAllPatientsComponent);
+    fixture = TestBed.createComponent(TimelineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,4 +22,5 @@ describe('ViewAllPatientsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });
