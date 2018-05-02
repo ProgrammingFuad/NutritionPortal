@@ -31,10 +31,12 @@ export class messageService {
     });
   }
   */
+ message = message.trim();
    var number= Math.random() *1000000;
    number= Math.floor(number);
+   var myNumber= String(number);
  var usersRef = this.firebase.database.ref("conversations");
-   usersRef.child("FW1Qik9nE3ZLiC7Xk9fgBcabUwm1"+number).set({ 
+   usersRef.child("FW1Qik9nE3ZLiC7Xk9fgBcabUwm1").child(myNumber).set({ 
     content: message,
     timeStamp: time,
     type: type
