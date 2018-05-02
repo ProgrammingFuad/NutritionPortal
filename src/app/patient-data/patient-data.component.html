@@ -1,3 +1,38 @@
 <div #chart>
 
 </div>
+
+
+<!-- 
+<div layout="row" layout-align="center">
+    <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let foodIntake of food">
+        <p>Meal: {{ foodIntake.typeMeal }}</p>
+        <p>Date: {{ foodIntake.realTimeStamp }}</p>
+        <p>Name: {{ foodIntake.mealName }}</p>
+        <p>Fat: {{ foodIntake.fat }}</p>
+        <p>Carbs: {{ foodIntake.carbs }}</p>
+        <p>Protein: {{ foodIntake.protein }}</p>
+        <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+
+
+   <div layout="row" layout-align="center">
+    <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let Sleep of sleep">
+        <p>Date: {{ Sleep.realTimeStamp }}</p>
+        <p>Quality Sleep: {{ Sleep.sleepValue }} /24</p>
+        <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+
+     -->
+   
+     
+     <div layout="row" layout-align="center">
+        <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let StressLevel of stress">
+            <p>Date: {{ StressLevel.realTimeStamp }}</p>
+            <p>Stress Rating: {{ StressLevel.stressRating }} /24</p>
+            <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+    

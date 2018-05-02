@@ -22,6 +22,9 @@ import { MessageComponent } from './messaging/message/message.component';
 import { FormSubmitComponent } from './form-submit/form-submit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { TimelineComponent } from './timeline/timeline.component';
+import { PatientDataSleepService } from './patient-data/patient-data-sleep.service';
+import { PatientDataStressService } from './patient-data/patient-data-stress.service';
+import {PatientDataFoodService} from './patient-data/patient-data-food-intake.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { TimelineComponent } from './timeline/timeline.component';
     HttpClientModule,
     MatSelectModule
   ],
-  providers: [HttpModule,HttpClientModule,PatientService, PatientDataServceService,PatientListComponent],
+  providers: [HttpModule,HttpClientModule,PatientService, PatientDataServceService,
+    PatientDataSleepService,PatientDataStressService,
+    PatientDataFoodService,PatientListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule{

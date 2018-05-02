@@ -1,5 +1,4 @@
 export class PatientData{
-    $key : string;
-    weight: number;
-    timestamp: string;
+    UserDate: string;
+    UserWeight:string;
 }

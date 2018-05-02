@@ -1,6 +1,10 @@
-import { PatientData } from './patient-data.model';
+import { PatientDataFoodService } from './patient-data-food-intake.service';
 import { PatientDataServceService } from './patient-data-servce.service';
+import { PatientData } from './patient-data.model';
 import { Component, ViewChild,ElementRef,OnInit} from '@angular/core';
+import {PatientDataSleepService } from './patient-data-sleep.service';
+import {PatientDataStressService} from './patient-data-stress.service';
+
 
 @Component({
   selector: 'app-patient-data',
@@ -10,25 +14,65 @@ import { Component, ViewChild,ElementRef,OnInit} from '@angular/core';
 export class PatientDataComponent implements OnInit {
 
   @ViewChild('chart') el: ElementRef;
-
-  patientList: PatientData[];
+  weight: any[];
+  sleep: SleepIntake[];
+  food: foodIntake[];
+  stress: StressLevel[];
    x1= [];
    y1=[];
-  constructor(private patientDataServceService: PatientDataServceService) { }
-
+  constructor(private patientDataServceService: PatientDataServceService, 
+    private patientDataSleepService: PatientDataSleepService,
+  private patientDataStressService:PatientDataStressService,
+private PatientDataFoodService: PatientDataFoodService ) { 
+ 
+  }
+ 
   ngOnInit() {
-    var patients = this.patientDataServceService.getData();
-    patients.snapshotChanges().subscribe(item => {
-      this.patientList = [];
+    var patientWeight = this.patientDataServceService.getData();
+    var patientSleep= this.patientDataSleepService.getData();
+    var patientStress= this.patientDataStressService.getData();
+    var patientFood= this.PatientDataFoodService.getData();
+
+
+    patientStress.snapshotChanges().subscribe(item => {
+      this.stress = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
-        y["$key"] = element.key;
-        y["weight"]= y["kilogram"];
-        y["timestamp"]= y["timestamp"];
-        this.x1.push(y["timestamp"]);
-        this.y1.push(y["kilogram"])
-        console.log(y);
-        this.patientList.push(y as PatientData);
+        this.stress.push(new StressLevel(y["TimeStamp"],y["Stress"]));
+    }
+    );
+    });
+
+
+    patientFood.snapshotChanges().subscribe(item => {
+      this.food = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        this.food.push(new foodIntake(y["TimeStamp"], y["calories"],
+      y["carbohyrates"],y["fat"],y["name"],y["protein"],y["type"]));
+    }
+    );
+    });
+    
+    patientSleep.snapshotChanges().subscribe(item => {
+      this.sleep = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        this.sleep.push(new SleepIntake(y["TimeStamp"],y["sleepValue"]));
+    }
+    );
+    });
+
+
+
+    patientWeight.snapshotChanges().subscribe(item => {
+      this.weight = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        var date = y["UserDate"];
+        var split = date.split(" ");
+        this.x1.push(split[0]); 
+        this.y1.push(y["UserWeight"])
       });
     });
 
@@ -36,6 +80,9 @@ export class PatientDataComponent implements OnInit {
   }
 
   basicChart(x: string[], y: number[]){
+    x=x.reverse();
+    y=y.reverse();
+    
 
     const element= this.el.nativeElement;
 
@@ -47,7 +94,7 @@ export class PatientDataComponent implements OnInit {
     const layout ={
       title: 'Weight Tracker',
       xaxis: {
-        title: 'Week 3'
+        title: 'Date Weight Recorded'
       },
       yaxis: {
         title: 'Weight in Kilos'
@@ -59,3 +106,90 @@ export class PatientDataComponent implements OnInit {
   }
 
 }
+
+
+class StressLevel{
+  timeStamp:string;
+  realTimeStamp: string;
+  stressRating: number;
+  
+    constructor(timeStamp: string, stressRating:number){
+      this.timeStamp=timeStamp;
+      this.stressRating=stressRating;
+      this.realTimeStamp= this.timeConverter(timeStamp);
+    }
+    timeConverter(UNIX_timestamp){
+      var a = new Date(UNIX_timestamp * 1000);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var year = a.getFullYear();
+      var month = months[a.getMonth()];
+      var date = a.getDate();
+      var hour = a.getHours();
+      var min = a.getMinutes();
+      var time =  month + ' ' + date+ ' ' + year + ' ' + hour + ':' + min;
+      return time;
+    } 
+  
+  }
+
+
+class SleepIntake{
+timeStamp:string;
+realTimeStamp: string;
+sleepValue: number;
+
+  constructor(timeStamp: string, sleepValue:number){
+    this.timeStamp=timeStamp;
+    this.sleepValue=sleepValue;
+    this.realTimeStamp= this.timeConverter(timeStamp);
+  }
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var time =  month + ' ' + date+ ' ' + year + ' ' + hour + ':' + min;
+    return time;
+  } 
+
+}
+
+
+class foodIntake{
+  timeStamp:string;
+  calories:number;
+  carbs:number;
+  fat:number;
+  mealName:string;
+  protein:number;
+  typeMeal:string;
+  realTimeStamp: string;
+
+  constructor(timeStamp: string, calories:number, carbs:number, 
+              fat:number, name:string, protein: number,typeMeal:string){
+                this.timeStamp=timeStamp;
+                this.calories=calories;
+                this.carbs=carbs;
+                this.fat=fat;
+                this.mealName=name;
+                this.protein=protein;
+                this.typeMeal=typeMeal;
+                this.realTimeStamp=this.timeConverter(timeStamp);
+  }
+
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var time =  month + ' ' + date+ ' ' + year + ' ' + hour + ':' + min;
+    return time;
+  } 
+}
+
