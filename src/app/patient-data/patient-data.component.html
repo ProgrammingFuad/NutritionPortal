@@ -1,9 +1,20 @@
-<div #chart>
 
+
+  <mat-form-field>
+    <mat-select placeholder="Patient">
+      <mat-option *ngFor="let s of patientX" [value]="patientX.value">
+        {{ s.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+<div 
+#chart>
 </div>
+  
 
-
-<!-- 
+<h2>Meals Eaten</h2>
 <div layout="row" layout-align="center">
     <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let foodIntake of food">
         <p>Meal: {{ foodIntake.typeMeal }}</p>
@@ -17,6 +28,7 @@
   </div>
 
 
+<h2>Quality Sleep</h2>
    <div layout="row" layout-align="center">
     <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let Sleep of sleep">
         <p>Date: {{ Sleep.realTimeStamp }}</p>
@@ -28,6 +40,8 @@
   
    
      
+
+    <h2>Stress Levels</h2>
      <div layout="row" layout-align="center">
         <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let StressLevel of stress">
             <p>Date: {{ StressLevel.realTimeStamp }}</p>
@@ -35,10 +49,9 @@
             <mat-divider></mat-divider>
         </mat-list>
       </div>
-       -->
 
 
-
+      <h2>Aerobic Levels</h2>
      <div layout="row" layout-align="center">
         <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let Aerobic of aerobic">
             <p>Date: {{ Aerobic.realTimeStamp }}</p>
@@ -51,3 +64,5 @@
       </div>
 
       
+
+    

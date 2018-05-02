@@ -5,20 +5,19 @@
 
     <form>
       <mat-form-field>
-        <mat-select placeholder="Patient" [(ngModel)]="selectedValue" name="Patient">
+        <mat-select placeholder="Patient" [(ngModel)]="selectedValue" name="Patient" id="name">
           <mat-option *ngFor="let Patient of pList" [value]="Patient.name" id="SecondChance">
             {{Patient.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
   
-      <p id="name" class="hide"> Selected value: {{selectedValue}} </p>
+    <!--   <p id="name" class="hide"> Selected value: {{selectedValue}} </p> -->
     </form>
  
 
   <div class="col-lg-4">
-    <textarea rows="4" cols="50" placeholder="Enter your text...." id="patientMessage">
-    
+    <textarea rows="4" cols="50" placeholder="Enter your text...." id="patientMessage">   
     </textarea>
   </div>
  

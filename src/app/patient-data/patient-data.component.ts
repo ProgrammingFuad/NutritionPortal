@@ -5,6 +5,7 @@ import { PatientData } from './patient-data.model';
 import { Component, ViewChild,ElementRef,OnInit} from '@angular/core';
 import {PatientDataSleepService } from './patient-data-sleep.service';
 import {PatientDataStressService} from './patient-data-stress.service';
+import { MatButtonModule, MatToolbarModule, MatListModule,MatFormFieldControl,MatFormFieldModule, MatSelect,MatOptionModule,MatOption } from '@angular/material';
 
 
 @Component({
@@ -13,6 +14,11 @@ import {PatientDataStressService} from './patient-data-stress.service';
   styleUrls: ['./patient-data.component.scss']
 })
 export class PatientDataComponent implements OnInit {
+ 
+  patientX = [
+    {value: 'FW1Qik9nE3ZLiC7Xk9fgBcabUwm1', viewValue: 'Demo'},
+  ];
+
 
   @ViewChild('chart') el: ElementRef;
 
@@ -233,7 +239,7 @@ class foodIntake{
     var date = a.getDate();
     var hour = a.getHours();
     var min = a.getMinutes();
-    var time =  month + ' ' + date+ ' ' + year + ' ' + hour + ':' + min;
+    var time =  month + ' ' + date+ ' ' + year;
     return time;
   } 
 }

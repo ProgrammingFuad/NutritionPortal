@@ -6,6 +6,7 @@ import { Patient } from './../patients/shared/patient.model';
 import { PatientListComponent } from './../patients/patient-list/patient-list.component'; 
 import { FormsModule} from '@angular/forms';
 import { MatButtonModule, MatToolbarModule, MatListModule,MatFormFieldControl,MatFormFieldModule, MatSelect,MatOptionModule,MatOption } from '@angular/material';
+import { messageService } from './messageService.service';
 
 
 
@@ -21,7 +22,8 @@ import { MatButtonModule, MatToolbarModule, MatListModule,MatFormFieldControl,Ma
 
 export class MessagingComponent implements OnInit {
   pList: Patient[];
-  constructor(public allPatients: PatientService){}
+  constructor(public allPatients: PatientService,
+     private messageservice: messageService){}
   ngOnInit() {
     var patients = this.allPatients.getData();
     patients.snapshotChanges().subscribe(item => {
@@ -45,6 +47,9 @@ export class MessagingComponent implements OnInit {
 */
   }
 
+  onChange(patient: string){
+    return patient;
+  }
 
   onClickMe(){
     var patientName = (<HTMLInputElement>document.getElementById('name')).value;
@@ -53,14 +58,13 @@ export class MessagingComponent implements OnInit {
     if(patientMessage!=undefined){
       console.log(patientMessage);
     }
-    if(patientName!=null && patientName!=undefined){
-      console.log(patientName);
-    }else{
-      console.log("Somethings wrong with Name");
-    }
-   
-  
+    console.log("Message sent");
+    let d = new Date();
+    const unixTime = d.valueOf();
+    console.log(patientMessage);
+    this.messageservice.sendMessage(patientMessage,unixTime, "text");
   }
 
 }
+
 
