@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 @Injectable()
 export class messageService {
   convos: AngularFireList<any>;
-  
   constructor(private firebase :AngularFireDatabase ) { }
   
   getData(){
@@ -17,13 +16,14 @@ export class messageService {
   
 //    this.newsFeedService.addItem(itemTitle.value,itemDescription.value,itemURL,unixTime);
   sendMessage(message: String ,time: number, type:string){
+    /*
     message= message.trim();
     this.firebase.database.ref('conversations/' + "FW1Qik9nE3ZLiC7Xk9fgBcabUwm1").set({
       content: message,
       timeStamp: time,
       type: type
     });
-    /*
+    
     this.convos.push({
       content: message,
       timeStamp: time,
@@ -31,6 +31,19 @@ export class messageService {
     });
   }
   */
-}
+   var number= Math.random() *1000000;
+   number= Math.floor(number);
+ var usersRef = this.firebase.database.ref("conversations");
+   usersRef.child("FW1Qik9nE3ZLiC7Xk9fgBcabUwm1"+number).set({ 
+    content: message,
+    timeStamp: time,
+    type: type
+   });
+ 
+ }
 
 }
+
+
+
+

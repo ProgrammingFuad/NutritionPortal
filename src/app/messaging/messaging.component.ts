@@ -39,12 +39,6 @@ export class MessagingComponent implements OnInit {
         }
       });   
     });
-
-/*
-    for (var patient in this.pList) { 
-      hmap.set(patient["$key"], patient);
-   }
-*/
   }
 
   onChange(patient: string){
@@ -56,12 +50,12 @@ export class MessagingComponent implements OnInit {
     var patientMessage = (<HTMLInputElement>document.getElementById('patientMessage')).value;
 
     if(patientMessage!=undefined){
-      console.log(patientMessage);
+      //console.log(patientMessage);
     }
     console.log("Message sent");
     let d = new Date();
     const unixTime = d.valueOf();
-    console.log(patientMessage);
+
     this.messageservice.sendMessage(patientMessage,unixTime, "text");
   }
 
