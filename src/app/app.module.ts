@@ -1,3 +1,4 @@
+import { PatientDataAerobicService } from './patient-data/patient-data-aerobic.service';
 import { PatientDataServceService } from './patient-data/patient-data-servce.service';
 import { PatientDataComponent } from './patient-data/patient-data.component';
 import { PatientService } from './patients/shared/patient.service';
@@ -52,7 +53,7 @@ import {PatientDataFoodService} from './patient-data/patient-data-food-intake.se
   ],
   providers: [HttpModule,HttpClientModule,PatientService, PatientDataServceService,
     PatientDataSleepService,PatientDataStressService,
-    PatientDataFoodService,PatientListComponent],
+    PatientDataFoodService,PatientDataAerobicService,PatientListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule{

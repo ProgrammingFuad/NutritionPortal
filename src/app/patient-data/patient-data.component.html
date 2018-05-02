@@ -25,7 +25,7 @@
     </mat-list>
   </div>
 
-     -->
+  
    
      
      <div layout="row" layout-align="center">
@@ -35,4 +35,19 @@
             <mat-divider></mat-divider>
         </mat-list>
       </div>
-    
+       -->
+
+
+
+     <div layout="row" layout-align="center">
+        <mat-list class="md-whiteframe-2dp" flex="30" *ngFor="let Aerobic of aerobic">
+            <p>Date: {{ Aerobic.realTimeStamp }}</p>
+            <p>Type: {{ Aerobic.aerobicType }} </p>
+            <p>Calories Burned: {{ Aerobic.caloriesBurned }} </p>
+            <p>Distance: {{ Aerobic.distance }}  </p>
+            <p>Duration: {{ Aerobic.duration }} </p>
+            <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+
+      

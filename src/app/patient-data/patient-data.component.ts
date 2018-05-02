@@ -1,3 +1,4 @@
+import { PatientDataAerobicService } from './patient-data-aerobic.service';
 import { PatientDataFoodService } from './patient-data-food-intake.service';
 import { PatientDataServceService } from './patient-data-servce.service';
 import { PatientData } from './patient-data.model';
@@ -14,16 +15,18 @@ import {PatientDataStressService} from './patient-data-stress.service';
 export class PatientDataComponent implements OnInit {
 
   @ViewChild('chart') el: ElementRef;
-  weight: any[];
+
   sleep: SleepIntake[];
   food: foodIntake[];
   stress: StressLevel[];
+  aerobic: Aerobic[];
    x1= [];
    y1=[];
   constructor(private patientDataServceService: PatientDataServceService, 
     private patientDataSleepService: PatientDataSleepService,
   private patientDataStressService:PatientDataStressService,
-private PatientDataFoodService: PatientDataFoodService ) { 
+private PatientDataFoodService: PatientDataFoodService,
+private patientDataAerobicService:PatientDataAerobicService  ) { 
  
   }
  
@@ -32,6 +35,19 @@ private PatientDataFoodService: PatientDataFoodService ) {
     var patientSleep= this.patientDataSleepService.getData();
     var patientStress= this.patientDataStressService.getData();
     var patientFood= this.PatientDataFoodService.getData();
+    var patientAerobic= this.patientDataAerobicService.getData();
+
+
+    patientAerobic.snapshotChanges().subscribe(item => {
+      this.aerobic = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        this.aerobic.push(new Aerobic(y["AerobicType"],y["Caloriesburned"],
+      y["Distance"],y["Duration"],y["TimeStamp"]));
+    }
+    );
+    });
+
 
 
     patientStress.snapshotChanges().subscribe(item => {
@@ -66,7 +82,6 @@ private PatientDataFoodService: PatientDataFoodService ) {
 
 
     patientWeight.snapshotChanges().subscribe(item => {
-      this.weight = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         var date = y["UserDate"];
@@ -106,7 +121,37 @@ private PatientDataFoodService: PatientDataFoodService ) {
   }
 
 }
+class Aerobic{
+  timeStamp:string;
+  aerobicType: string;
+  caloriesBurned: string;
+  distance: number;
+  duration: number;
+  realTimeStamp:string;
 
+  constructor(aerobicType:string, caloriesBurned:string, distance:number, 
+  duration:number, timeStamp:string){
+    this.aerobicType=aerobicType;
+    this.caloriesBurned=caloriesBurned;
+    this.distance=distance;
+    this.duration=duration;
+    this.timeStamp=timeStamp;
+    this.realTimeStamp=this.timeConverter(timeStamp);
+  }
+
+
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var time =  month + ' ' + date+ ' ' + year;
+    return time;
+  } 
+}
 
 class StressLevel{
   timeStamp:string;
@@ -192,4 +237,5 @@ class foodIntake{
     return time;
   } 
 }
+
 
